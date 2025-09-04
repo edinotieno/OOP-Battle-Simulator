@@ -1,6 +1,7 @@
 import random
 from goblin import Goblin
 from hero import Hero
+from time import sleep 
 
 def main():
     print("Welcome to the Battle Arena!")
@@ -14,11 +15,19 @@ def main():
 
     # Keep track of how many goblins were defeated
     defeated_goblins = 0
+    
 
     # Battle Loop 
     while hero.is_alive() and any(goblin.is_alive() for goblin in goblins):
         print("\nNew Round!")
-        
+
+        # Special ability!
+        if hero.health <= 20:
+            global cannot_play
+            question = input(f"Oh no! Your hero is at {hero.health} hp! Would you like to use a special ability? y/n ")
+            if question == "y":
+                cannot_play = hero.special_abilities()
+
         # Hero's turn to attack
         target_goblin = random.choice([goblin for goblin in goblins if goblin.is_alive()])
         damage = hero.strike()
@@ -32,10 +41,17 @@ def main():
 
         # Goblins' turn to attack
         for goblin in goblins:
+            global cannot_play
             if goblin.is_alive():
-                damage = goblin.attack()
-                print(f"{goblin.name} attacks hero for {damage} damage!")
-                hero.receive_damage(damage)
+                if cannot_play:
+                    damage = 0
+                    print("Goblin cannot give your hero damage! Mwahaha!")
+                    hero.receive_damage(damage)
+                else:
+                    damage = goblin.attack()
+                    print(f"{goblin.name} attacks hero for {damage} damage!")
+                    hero.receive_damage(damage)
+        sleep(2)
 
     # Determine outcome
     if hero.is_alive():

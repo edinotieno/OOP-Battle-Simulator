@@ -16,13 +16,15 @@ class Hero:
     
     def __init__(self, name):
         self.name = name
-        self.health = 500
+        self.health = 100
         self.attack_power = 20  
 
     def strike(self):
         crit = random.randint(1,10)
         if crit >= 8:
             return self.attack_power * 2
+        else:
+            return self.attack_power
 
     def receive_damage(self, damage):
         if self.health - damage < 0:
@@ -32,3 +34,16 @@ class Hero:
 
     def is_alive(self):
         return self.health > 0
+    
+    def special_abilities(self):
+        roll = random.randint(1,4)
+        if roll == 1:
+            print("Your hero used his health potion ₊✩‧₊˚౨ৎ˚₊✩‧₊")
+            self.health += 75
+            print(f"Your hero's health is now {self.health}")
+        elif roll == 2:
+            print("Your hero activated frozone mode ༘⋆ ❅ ･:*:｡ ❆")
+
+
+
+        
