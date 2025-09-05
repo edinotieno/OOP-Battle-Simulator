@@ -2,6 +2,7 @@ import random
 from goblin import Goblin
 from hero import Hero
 from time import sleep 
+from boss import Boss
 
 def main():
     print("Welcome to the Battle Arena!")
@@ -11,7 +12,7 @@ def main():
     hero = Hero("Aether")
 
     # Makes a list of 3 goblins ༼ ºل͟º ༽ ༼ ºل͟º ༽ ༼ ºل͟º ༽
-    goblins = [Goblin(f"Goblin {i+1}") for i in range(3)]
+    goblins = [Goblin(f"Goblin {i+1}", "green") for i in range(3)]
 
     # Keep track of how many goblins were defeated
     defeated_goblins = 0
@@ -55,6 +56,11 @@ def main():
                     hero.receive_damage(damage)
         sleep(2)
 
+    # Boss Battle !!
+    boss = Boss("The Puppetmaster", "Magic")
+    while hero.is_alive() and boss.is_alive:
+        #TODO: Make boss battle work
+
     # Determine outcome
     if hero.is_alive():
         print(f"\nThe hero has defeated all the goblins! ༼ ᕤ◕◡◕ ༽ᕤ")
@@ -66,3 +72,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
