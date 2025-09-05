@@ -41,13 +41,16 @@ class Hero:
         return self.health > 0
     
     def special_abilities(self):
-        roll = random.randint(1,4)
+        roll = random.randint(1,2)
         if roll == 1:
             print("Your hero used his health potion ₊✩‧₊˚౨ৎ˚₊✩‧₊")
             self.health += 75
             print(f"Your hero's health is now {self.health}")
         elif roll == 2:
             print("Your hero activated frozone mode ༘⋆ ❅ ･:*:｡ ❆")
+
+        # TODO: Make frozone  mode actually work T-T
+
 
 
 

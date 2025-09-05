@@ -27,7 +27,8 @@ def main():
         if hero.health <= 20:
             question = input(f"Oh no! Your hero is at {hero.health} hp! Would you like to use a special ability? y/n ")
             if question == "y":
-                cannot_play = hero.special_abilities()
+                if hero.special_abilities():
+                    cannot_play += len(goblins)
 
         # Hero's turn to attack
         target_goblin = random.choice([goblin for goblin in goblins if goblin.is_alive()])
@@ -43,10 +44,11 @@ def main():
         # Goblins' turn to attack
         for goblin in goblins:
             if goblin.is_alive():
-                if cannot_play:
+                if cannot_play > 0:
                     damage = 0
                     print("Goblin cannot give your hero damage! Mwahaha!")
                     hero.receive_damage(damage)
+                    cannot_play -= 1
                 else:
                     damage = goblin.attack()
                     print(f"{goblin.name} attacks hero for {damage} damage!")
