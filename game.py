@@ -16,14 +16,15 @@ def main():
     # Keep track of how many goblins were defeated
     defeated_goblins = 0
     
+    # For whenever an enemy's attack is stopped
+    cannot_play = False
 
     # Battle Loop 
     while hero.is_alive() and any(goblin.is_alive() for goblin in goblins):
-        print("\nNew Round!")
+        print("\nNew Round!") # \n prints whatever is infront of it on a new line
 
         # Special ability!
         if hero.health <= 20:
-            global cannot_play
             question = input(f"Oh no! Your hero is at {hero.health} hp! Would you like to use a special ability? y/n ")
             if question == "y":
                 cannot_play = hero.special_abilities()
@@ -41,7 +42,6 @@ def main():
 
         # Goblins' turn to attack
         for goblin in goblins:
-            global cannot_play
             if goblin.is_alive():
                 if cannot_play:
                     damage = 0

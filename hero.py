@@ -17,14 +17,19 @@ class Hero:
     def __init__(self, name):
         self.name = name
         self.health = 100
-        self.attack_power = 20  
+        self.attack_power = 20
 
     def strike(self):
         crit = random.randint(1,10)
-        if crit >= 8:
-            return self.attack_power * 2
-        else:
-            return self.attack_power
+        action = input("Which attack do you want to do? Heal(h) Strike(s)")
+        if action == "h":
+            self.health += 10
+            return 0
+        elif action == "s":
+            if crit >= 8:
+                return self.attack_power * 2
+            else:
+                return self.attack_power
 
     def receive_damage(self, damage):
         if self.health - damage < 0:
