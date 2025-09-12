@@ -16,10 +16,14 @@ class Boss(Enemy):
 
         if self.type == "Magic":
             self.attack_power = 30
+            print(f"{self.name} uses a magic spell ∋(。・”・)_†:*.;”.*・;・")
 
         elif self.type == "Normal":
-            yadda yadda
+            self.attack_power = 30'
+            print(f"{self.name} throws a powerfull punch /( .□.) ︵╰(゜益゜)╯︵ /(.□. /)")
 
-        elif self.type == "Dragon"
+        elif self.type == "Dragon":
+            self.attack_power = 30
+            print(f"{self.name} launches a fireball ")
 
-# TODO: Finish type abilities 
+# TODO: Finish type abilities  
